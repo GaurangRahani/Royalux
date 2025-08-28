@@ -1,0 +1,51 @@
+.nav-pills li:hover,
+.nav-pills li:active {
+  background-color: #d3a478 !important;
+  border-radius: 5px;
+}
+
+.dropdown-item:active,
+.dropdown-item:hover {
+  background-color: rgb(226, 225, 225) !important; 
+  color: white !important; 
+}
+
+
+.sticky-sidebar {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 16.5vw;
+	z-index: 100;
+  }
+
+
+
+  .collapsed-sidebar {
+	width: 100%; 
+	transition: width 0.3s ease; 
+  }
+  
+  .collapsed-sidebar .navbar-toggler {
+	margin-right: 0;
+  }
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

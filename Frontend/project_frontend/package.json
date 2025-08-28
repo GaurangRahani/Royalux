@@ -1,0 +1,76 @@
+{
+  "name": "finalproject",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.8",
+    "@heroicons/react": "^2.1.1",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^5.15.0",
+    "@mui/material": "^5.15.5",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.12",
+    "@react-oauth/google": "^0.12.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "animate.css": "^4.1.1",
+    "axios": "^1.6.7",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "console-browserify": "^1.2.0",
+    "firebase": "^10.9.0",
+    "jwt-decode": "^4.0.0",
+    "material-ui-popup-state": "^5.0.10",
+    "popper.js": "^1.16.1",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.10.2",
+    "react-dom": "^18.2.0",
+    "react-form-stepper": "^2.0.3",
+    "react-icons": "^4.12.0",
+    "react-modal-video": "^2.0.1",
+    "react-otp-input": "^3.1.1",
+    "react-paginate": "^8.2.0",
+    "react-razorpay": "^2.0.1",
+    "react-router-dom": "^6.20.1",
+    "react-scripts": "^5.0.1",
+    "react-toastify": "^10.0.4",
+    "react-youtube": "^10.1.0",
+    "styled-components": "^6.1.8",
+    "sweetalert2": "^11.10.3",
+    "swiper": "^11.0.6",
+    "tailwindcss": "^3.4.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "resolve": {
+    "fallback": {
+      "console": false
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

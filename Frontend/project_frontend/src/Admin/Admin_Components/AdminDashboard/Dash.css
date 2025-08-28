@@ -1,0 +1,99 @@
+
+ 
+ 
+ .sticky-sidebar {
+	/* position: fixed; */
+	top: 80px;
+	/* height: 88.4vh; */
+	z-index: 1000;
+	
+  }
+
+  
+
+  
+
+  .cart-content {
+	position: relative;
+	bottom: 12%;
+	width: 97%;
+	margin: auto;
+	margin-top: 1110px;
+  }
+  .cancleCard {
+	background: #00416a; /* fallback for old browsers */
+	background: -webkit-linear-gradient(
+	  to right,
+	  #e4e5e6,
+	  #00416a
+	); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+	  to right,
+	  #e4e5e6,
+	  #00416a
+	); 
+  }
+  .penddingPayment {
+	background: #649173; /* fallback for old browsers */
+	background: -webkit-linear-gradient(
+	  to right,
+	  #dbd5a4,
+	  #649173
+	);
+	background: linear-gradient(
+	  to right,
+	  #dbd5a4,
+	  #649173
+	); 
+  }
+  .completePayment {
+	background: #005aa7; 
+	background: -webkit-linear-gradient(
+	  to right,
+	  #fffde4,
+	  #005aa7
+	); 
+	background: linear-gradient(
+	  to right,
+	  #fffde4,
+	  #005aa7
+	); 
+  }
+  
+  .users {
+	background: #334d50; 
+	background: -webkit-linear-gradient(
+	  to right,
+	  #cbcaa5,
+	  #334d50
+	);
+	background: linear-gradient(
+	  to right,
+	  #cbcaa5,
+	  #334d50
+	);
+  }
+  .dashCardText {
+	font-weight: 500;
+	font-size: 21px;
+  }
+  
+
+
+  .user_info{
+	position: relative;
+	bottom: 12%;
+	width: 97%;
+	margin: auto;
+  }
+
+
+
+  
+.link_hover a:hover{
+	color: #d3a478;
+}
+
+
+
+  

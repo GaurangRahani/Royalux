@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440px" height="640px" viewBox="0 0 1440 640" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>bgDesktop</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M70,640 L1370,640 C1408.65993,640 1440,608.659932 1440,570 L1440,70 C1440,31.3400675 1408.65993,-7.10171439e-15 1370,0 L70,0 C31.3400675,7.10171439e-15 -4.73447626e-15,31.3400675 0,70 L0,570 C4.73447626e-15,608.659932 31.3400675,640 70,640 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bgDesktop">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Mask" fill="#FFFFFF" xlink:href="#path-1"></use>
+            <g id="Group-3" mask="url(#mask-2)" opacity="0.100000001">
+                <g transform="translate(140.000000, 78.000000) rotate(-180.000000) translate(-140.000000, -78.000000) translate(-58.000000, -15.000000)" id="Group-2">
+                    <g transform="translate(198.000000, 43.000000) scale(1, -1) translate(-198.000000, -43.000000) ">
+                        <g id="Group-13" transform="translate(94.000000, 43.000000) scale(1, -1) translate(-94.000000, -43.000000) ">
+                            <g id="Group" transform="translate(102.000000, 0.000000)">
+                                <circle id="Oval" fill="#F2F3F8" cx="3.89359741" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="29.8509135" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="55.8082296" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="81.7655457" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="3.89359741" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="29.8509135" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="55.8082296" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="81.7655457" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="3.89359741" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="29.8509135" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="55.8082296" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="81.7655457" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="3.89359741" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="29.8509135" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="55.8082296" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="81.7655457" cy="81.7655457" r="3.89359741"></circle>
+                            </g>
+                            <g id="Group">
+                                <circle id="Oval" fill="#F2F3F8" cx="3.89359741" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="29.8509135" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="55.8082296" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="81.7655457" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="3.89359741" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="29.8509135" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="55.8082296" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="81.7655457" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="3.89359741" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="29.8509135" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="55.8082296" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="81.7655457" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="3.89359741" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="29.8509135" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="55.8082296" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="81.7655457" cy="81.7655457" r="3.89359741"></circle>
+                            </g>
+                        </g>
+                        <g id="Group-13" transform="translate(302.000000, 43.000000) scale(1, -1) translate(-302.000000, -43.000000) translate(208.000000, 0.000000)">
+                            <g id="Group" transform="translate(102.000000, 0.000000)">
+                                <circle id="Oval" fill="#F2F3F8" cx="3.89359741" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="29.8509135" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="3.89359741" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="29.8509135" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="3.89359741" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="29.8509135" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="3.89359741" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="29.8509135" cy="81.7655457" r="3.89359741"></circle>
+                            </g>
+                            <g id="Group">
+                                <circle id="Oval" fill="#F2F3F8" cx="3.89359741" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="29.8509135" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="55.8082296" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="81.7655457" cy="3.89359741" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="3.89359741" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="29.8509135" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="55.8082296" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#F2F3F8" cx="81.7655457" cy="29.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="3.89359741" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="29.8509135" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="55.8082296" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="81.7655457" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="3.89359741" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="29.8509135" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="55.8082296" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="81.7655457" cy="81.7655457" r="3.89359741"></circle>
+                            </g>
+                        </g>
+                    </g>
+                    <g transform="translate(198.000000, 105.500000) scale(1, -1) translate(-198.000000, -105.500000) translate(0.000000, 75.000000)">
+                        <g id="Group-13" transform="translate(94.000000, 17.500000) scale(1, -1) translate(-94.000000, -17.500000) " fill="#2E204E">
+                            <g id="Group" transform="translate(102.000000, 0.000000)">
+                                <circle id="Oval" cx="3.89359741" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="3.89359741" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="30.7655457" r="3.89359741"></circle>
+                            </g>
+                            <g id="Group">
+                                <circle id="Oval" cx="3.89359741" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="3.89359741" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="30.7655457" r="3.89359741"></circle>
+                            </g>
+                        </g>
+                        <g id="Group-13" transform="translate(302.000000, 30.500000) scale(1, -1) translate(-302.000000, -30.500000) translate(208.000000, 0.000000)">
+                            <g id="Group" transform="translate(102.000000, 0.000000)">
+                                <circle id="Oval" fill="#F2F3F8" cx="29.8509135" cy="4.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="3.89359741" cy="30.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="29.8509135" cy="30.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="3.89359741" cy="56.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="29.8509135" cy="56.7655457" r="3.89359741"></circle>
+                            </g>
+                            <g id="Group" transform="translate(0.000000, 26.000000)" fill="#2E204E">
+                                <circle id="Oval" cx="3.89359741" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="3.89359741" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="30.7655457" r="3.89359741"></circle>
+                            </g>
+                        </g>
+                    </g>
+                    <g transform="translate(198.000000, 155.500000) scale(1, -1) translate(-198.000000, -155.500000) translate(0.000000, 125.000000)">
+                        <g id="Group-13" transform="translate(94.000000, 17.500000) scale(1, -1) translate(-94.000000, -17.500000) " fill="#2E204E">
+                            <g id="Group" transform="translate(102.000000, 0.000000)">
+                                <circle id="Oval" cx="3.89359741" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="4.80822959" r="3.89359741"></circle>
+                            </g>
+                            <g id="Group">
+                                <circle id="Oval" cx="3.89359741" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="4.80822959" r="3.89359741"></circle>
+                            </g>
+                        </g>
+                        <g id="Group-13" transform="translate(302.000000, 30.500000) scale(1, -1) translate(-302.000000, -30.500000) translate(208.000000, 0.000000)">
+                            <g id="Group" transform="translate(102.000000, -0.000000)">
+                                <circle id="Oval" fill="#F2F3F8" cx="29.8509135" cy="4.8509135" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="3.89359741" cy="30.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" fill="#2E204E" cx="29.8509135" cy="30.8082296" r="3.89359741"></circle>
+                            </g>
+                            <g id="Group" transform="translate(0.000000, 26.000000)" fill="#2E204E">
+                                <circle id="Oval" cx="3.89359741" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="4.80822959" r="3.89359741"></circle>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-3-Copy" mask="url(#mask-2)" opacity="0.100000001">
+                <g transform="translate(1411.000000, 640.000000) rotate(-180.000000) translate(-1411.000000, -640.000000) translate(1213.000000, 547.000000)" id="Group-2">
+                    <g transform="translate(198.000000, 93.000000) scale(1, -1) translate(-198.000000, -93.000000) translate(0.000000, 50.000000)">
+                        <g id="Group-13" transform="translate(94.000000, 43.000000) scale(1, -1) translate(-94.000000, -43.000000) " fill="#2E204E">
+                            <g id="Group" transform="translate(102.000000, 0.000000)">
+                                <circle id="Oval" cx="81.7655457" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="81.7655457" r="3.89359741"></circle>
+                            </g>
+                        </g>
+                        <g id="Group-13" transform="translate(302.000000, 43.000000) scale(1, -1) translate(-302.000000, -43.000000) translate(208.000000, 0.000000)" fill="#2E204E">
+                            <g id="Group" transform="translate(102.000000, 0.000000)">
+                                <circle id="Oval" cx="3.89359741" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" cx="3.89359741" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="81.7655457" r="3.89359741"></circle>
+                            </g>
+                            <g id="Group">
+                                <circle id="Oval" cx="3.89359741" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="55.8082296" r="3.89359741"></circle>
+                                <circle id="Oval" cx="3.89359741" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="81.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="81.7655457" r="3.89359741"></circle>
+                            </g>
+                        </g>
+                    </g>
+                    <g transform="translate(198.000000, 143.000000) scale(1, -1) translate(-198.000000, -143.000000) translate(0.000000, 100.000000)">
+                        <g id="Group-13" transform="translate(94.000000, 43.000000) scale(1, -1) translate(-94.000000, -43.000000) " fill="#2E204E">
+                            <g id="Group" transform="translate(102.000000, 51.000000)">
+                                <circle id="Oval" cx="81.7655457" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="30.7655457" r="3.89359741"></circle>
+                            </g>
+                        </g>
+                        <g id="Group-13" transform="translate(302.000000, 17.500000) scale(1, -1) translate(-302.000000, -17.500000) translate(208.000000, 0.000000)" fill="#2E204E">
+                            <g id="Group" transform="translate(102.000000, -0.000000)">
+                                <circle id="Oval" cx="3.89359741" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="3.89359741" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="30.7655457" r="3.89359741"></circle>
+                            </g>
+                            <g id="Group" transform="translate(0.000000, -0.000000)">
+                                <circle id="Oval" cx="3.89359741" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="4.80822959" r="3.89359741"></circle>
+                                <circle id="Oval" cx="3.89359741" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="29.8509135" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="55.8082296" cy="30.7655457" r="3.89359741"></circle>
+                                <circle id="Oval" cx="81.7655457" cy="30.7655457" r="3.89359741"></circle>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <g id="Group-14" mask="url(#mask-2)">
+                <g transform="translate(1228.536073, 88.000000) rotate(4.000000) translate(-1228.536073, -88.000000) translate(931.536073, -163.000000)" id="Rectangle">
+                    <path d="M52.463927,43 L565.463927,43 L565.463927,413 C521.415802,323.62738 467.195694,271.960713 402.803604,258 C306.215469,237.05893 246.677153,380.719872 133.373655,299 C57.8379901,244.520085 30.8680806,159.186752 52.463927,43 Z" stroke="none" fill-opacity="0.1" fill="#FF594F" fill-rule="evenodd" transform="translate(305.362774, 228.000000) rotate(-10.000000) translate(-305.362774, -228.000000) "></path>
+                    <path d="M52.463927,43 L565.463927,43 L565.463927,413 C521.415802,323.62738 467.195694,271.960713 402.803604,258 C306.215469,237.05893 246.677153,380.719872 133.373655,299 C57.8379901,244.520085 30.8680806,159.186752 52.463927,43 Z" stroke="#EACDCC" stroke-width="1" fill="none" transform="translate(305.362774, 228.000000) rotate(10.000000) translate(-305.362774, -228.000000) "></path>
+                    <path d="M48.3034771,51.613887 L561.303477,51.613887 L561.303477,421.613887 C517.255352,332.241267 463.035244,280.5746 398.643154,266.613887 C302.055019,245.672817 242.516703,389.333759 129.213205,307.613887 C53.6775402,253.133972 26.7076307,167.800639 48.3034771,51.613887 Z" stroke="#EACDCC" stroke-width="1" fill="none" transform="translate(301.202324, 236.613887) rotate(4.000000) translate(-301.202324, -236.613887) "></path>
+                    <path d="M42.202306,77.562224 L555.202306,77.562224 L555.202306,447.562224 C511.154181,358.189604 456.934073,306.522937 392.541983,292.562224 C295.953848,271.621154 236.415532,415.282096 123.112034,333.562224 C47.5763691,279.082309 20.6064596,193.748976 42.202306,77.562224 Z" stroke="#EACDCC" stroke-width="1" fill="none" transform="translate(295.101153, 262.562224) rotate(-13.000000) translate(-295.101153, -262.562224) "></path>
+                </g>
+            </g>
+            <g id="Group-14" mask="url(#mask-2)">
+                <g transform="translate(27.000000, 558.000000) scale(1, -1) rotate(-86.000000) translate(-27.000000, -558.000000) translate(-270.000000, 307.000000)" id="Rectangle">
+                    <path d="M52.463927,43 L565.463927,43 L565.463927,413 C521.415802,323.62738 467.195694,271.960713 402.803604,258 C306.215469,237.05893 246.677153,380.719872 133.373655,299 C57.8379901,244.520085 30.8680806,159.186752 52.463927,43 Z" stroke="none" fill-opacity="0.1" fill="#FF594F" fill-rule="evenodd" transform="translate(305.362774, 228.000000) rotate(-10.000000) translate(-305.362774, -228.000000) "></path>
+                    <path d="M52.463927,43 L565.463927,43 L565.463927,413 C521.415802,323.62738 467.195694,271.960713 402.803604,258 C306.215469,237.05893 246.677153,380.719872 133.373655,299 C57.8379901,244.520085 30.8680806,159.186752 52.463927,43 Z" stroke="#EACDCC" stroke-width="1" fill="none" transform="translate(305.362774, 228.000000) rotate(10.000000) translate(-305.362774, -228.000000) "></path>
+                    <path d="M48.3034771,51.613887 L561.303477,51.613887 L561.303477,421.613887 C517.255352,332.241267 463.035244,280.5746 398.643154,266.613887 C302.055019,245.672817 242.516703,389.333759 129.213205,307.613887 C53.6775402,253.133972 26.7076307,167.800639 48.3034771,51.613887 Z" stroke="#EACDCC" stroke-width="1" fill="none" transform="translate(301.202324, 236.613887) rotate(4.000000) translate(-301.202324, -236.613887) "></path>
+                    <path d="M42.202306,77.562224 L555.202306,77.562224 L555.202306,447.562224 C511.154181,358.189604 456.934073,306.522937 392.541983,292.562224 C295.953848,271.621154 236.415532,415.282096 123.112034,333.562224 C47.5763691,279.082309 20.6064596,193.748976 42.202306,77.562224 Z" stroke="#EACDCC" stroke-width="1" fill="none" transform="translate(295.101153, 262.562224) rotate(-13.000000) translate(-295.101153, -262.562224) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
