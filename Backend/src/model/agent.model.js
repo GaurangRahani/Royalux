@@ -2,6 +2,7 @@ import mongoose, { Schema } from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
 
+// Deprecated: keep only for migration reference. After Phase 2 verification, this collection/model can be dropped manually.
 // Define the schema for the Agent model
 const agentSchema = new Schema(
   {

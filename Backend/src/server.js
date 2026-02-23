@@ -10,7 +10,7 @@ https.globalAgent.options.maxVersion = "TLSv1.3";
 
 connectDB()
 .then(() => {
-    app.listen(8000, () => {
+    app.listen(PORT, () => {
         console.log(`Service is running at port : ${PORT} 🚀`);
     })
 })

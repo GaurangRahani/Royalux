@@ -16,7 +16,7 @@ export const addProperty = async (req, res) => {
     const data = req.body;
 
     // Validate user data and file upload
-    if (user.email !== data.email && user.mobileNo !== data.mobileNo) {
+    if (user.email !== data.email || user.mobileNo !== data.mobileNo) {
       return res.status(400).json({
         success: false,
         message: errorMessage.InvalidData,
@@ -1009,7 +1009,7 @@ export const getAllApprovalPropertyForApp = async (req, res) => {
  */
 export const getOnlyPaymentProperty = async (req, res) => {
   try {
-    const { id } = req.params;
+    const id = req.user._id;
     const propertyList = await PropertyModel.find({
       isPayment: true,
       paymentUserId: id,

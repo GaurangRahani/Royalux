@@ -1,6 +1,84 @@
 import mongoose, { Schema } from "mongoose";
-import validator from "validator";
-import bcrypt from "bcrypt";
+
+const bankDetailsSchema = new Schema(
+  {
+    accountHolderName: {
+      type: String,
+      trim: true,
+    },
+    accountNumber: {
+      type: String,
+      trim: true,
+    },
+    ifscCode: {
+      type: String,
+      trim: true,
+    },
+    bankName: {
+      type: String,
+      trim: true,
+    },
+  },
+  { _id: false },
+);
+
+const documentsSchema = new Schema(
+  {
+    aadhaarFront: {
+      type: String,
+      trim: true,
+    },
+    aadhaarBack: {
+      type: String,
+      trim: true,
+    },
+    panCard: {
+      type: String,
+      trim: true,
+    },
+    reraLicense: {
+      type: String,
+      trim: true,
+    },
+  },
+  { _id: false },
+);
+
+const agentProfileSchema = new Schema(
+  {
+    address: {
+      type: String,
+      trim: true,
+    },
+    bankDetails: {
+      type: bankDetailsSchema,
+      default: undefined,
+    },
+    documents: {
+      type: documentsSchema,
+      default: undefined,
+    },
+  },
+  { _id: false },
+);
+
+const agentSubscriptionSchema = new Schema(
+  {
+    status: {
+      type: String,
+      enum: ["NONE", "ACTIVE", "EXPIRED"],
+      default: "NONE",
+    },
+    plan: {
+      type: String,
+      trim: true,
+    },
+    validTill: {
+      type: Date,
+    },
+  },
+  { _id: false },
+);
 
 const userSchema = new Schema(
   {
@@ -12,85 +90,76 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: true,
-      lowercase: true,
       unique: true,
-      validate(value) {
-        if (!validator.isEmail(value)) {
-          throw new Error("Validation Error");
-        }
-      },
       trim: true,
+      lowercase: true,
     },
     mobileNo: {
       type: String,
-      // required: true,
+      required: true,
+      unique: true,
       trim: true,
-      validate(value) {
-        if (
-          !validator.isMobilePhone(value, "any", {
-            strictMode: false,
-          })
-        ) {
-          throw new Error("Validation Error");
-        }
-      },
     },
-    password: {
+    age: {
+      type: Number,
+    },
+    gender: {
       type: String,
-      // required: true,
-      trim: true,
-      select: false,
+      enum: ["MALE", "FEMALE", "OTHER"],
     },
     profilePic: {
       type: String,
-      default: null,
+    },
+    city: {
+      type: String,
       trim: true,
     },
-    publicUrl: {
+    state: {
       type: String,
-      default: null,
+      trim: true,
+    },
+    password: {
+      type: String,
+      required: true,
       trim: true,
     },
     role: {
       type: String,
-      enum: {
-        values: ["USER", "ADMIN"],
-        message: "Role is not correct",
-      },
-      required: true,
+      enum: ["USER", "ADMIN"],
       default: "USER",
-      trim: true,
     },
-    isLogin: {
+    canListForOthers: {
       type: Boolean,
       default: false,
-      trim: true,
+    },
+    agentApplicationStatus: {
+      type: String,
+      enum: ["NONE", "PENDING", "APPROVED", "REJECTED"],
+      default: "NONE",
+    },
+    agentSubscription: {
+      type: agentSubscriptionSchema,
+      default: undefined,
+    },
+    agentProfile: {
+      type: agentProfileSchema,
+      default: undefined,
+    },
+    isBlocked: {
+      type: Boolean,
+      default: false,
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
+    updatedAt: {
+      type: Date,
+      default: Date.now,
     },
   },
-  { timestamps: true, versionKey: false }
+  { versionKey: false },
 );
-
-userSchema.pre("save", async function (next) {
-  if (this.isModified("password")) {
-    const salt = bcrypt.genSaltSync(10);
-    this.password = await bcrypt.hash(this.password, salt);
-  }
-  next();
-});
-
-userSchema.methods.isPasswordCorrect = async function (password) {
-  return await bcrypt.compare(password, this.password);
-};
-
-userSchema.methods.getData = function () {
-  return {
-    id: this._id,
-    name: this.name,
-    email: this.email,
-    profilePic: this.profilePic,
-    isLogin: this.isLogin,
-  };
-};
 
 const UserModel = mongoose.model("user", userSchema);
 

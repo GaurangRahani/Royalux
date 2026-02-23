@@ -36,6 +36,6 @@ router.post("/google-login", googleLoginUser);
 
 router.get("/get-user", verifyRole, getCurrentUser); // Use the new middleware
 
-router.delete("/delete-user", deleteUser);
+router.delete("/delete-user", verifyRole, deleteUser);
 
 export const userRouter = router;

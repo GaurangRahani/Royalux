@@ -57,6 +57,6 @@ router.get("/get-likeproperty",verifyUser,getLikeProperty)
 router.put("/set-isproperty",verifyUser,addPaymentInProperty);
 
 
-router.get('/get-allpayment-property/:id' , verifyUser , getOnlyPaymentProperty)
+router.get("/get-allpayment-property", verifyUser, getOnlyPaymentProperty);
 
 export const propertyRouter = router;

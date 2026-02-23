@@ -15,7 +15,7 @@ export const addFeedBack = async (req, res) => {
 
     const { name, email, rating, message } = req.body;
 
-    if ((name && email && rating && message) === undefined) {
+    if (!name || !email || !rating || !message) {
       return res
         .status(400)
         .json({ success: false, message: errorMessage.NotEnterValidFeilds });
@@ -57,11 +57,17 @@ export const addFeedBack = async (req, res) => {
 
 export const getFeedBack = async (req, res) => {
   try {
+    const user = req.user;
+    if (user.role !== "ADMIN") {
+      return res
+        .status(403)
+        .json({ success: false, message: errorMessage.UserCantSee });
+    }
+
     const feedbackList = await FeedBackModel.find();
     return res.status(200).json({ data: feedbackList });
   } catch (error) {
     return res.status(501).json({ success: false, message: error.message });
   }
 };
-
 

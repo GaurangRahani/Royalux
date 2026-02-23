@@ -124,8 +124,21 @@ const propertySchema = new Schema(
     },
     agentId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "agent",
+      ref: "user",
       default: null,
+    },
+    listedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+      default: null,
+    },
+    ownerType: {
+      type: String,
+      enum: {
+        values: ["ONLINE", "OFFLINE"],
+        message: "Owner type is not correct",
+      },
+      default: "ONLINE",
     },
     isLike: {
       type: Boolean,

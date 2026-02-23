@@ -16,9 +16,7 @@ export const addAgent = async (req, res) => {
   try {
     const data = req.body;
 
-    if (
-      (data.name && data.email && data.mobileNo && data.password) === undefined
-    ) {
+    if (!data.name || !data.email || !data.mobileNo || !data.password) {
       return res
         .status(400)
         .json({ success: false, message: errorMessage.NotEnterValidFeilds });
@@ -157,7 +155,7 @@ export const agentMetting = async (req, res) => {
   try {
     const { email, date, time, name, link } = req.body;
 
-    if ((email && date && time && name && link) == undefined) {
+    if (!email || !date || !time || !name || !link) {
       return res
         .status(400)
         .json({ success: false, message: errorMessage.NotEnterValidFeilds });
@@ -535,6 +533,14 @@ export const deleteProfilePic = async (req, res) => {
 
 export const getAllAnalyticsCount = async (req, res) => {
   try {
+    const admin = req.user;
+    if (admin.role !== "ADMIN") {
+      return res.status(403).json({
+        success: false,
+        message: errorMessage.UserCantSee,
+      });
+    }
+
     // Fetch all counts concurrently using Promise.all for better performance
     const [
       totalProperties,

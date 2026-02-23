@@ -19,9 +19,6 @@ export const transporter = nodemailer.createTransport(
       user: smtpConfig.EMAIL,
       pass: smtpConfig.PASSWORD,
     },
-    tls: {
-      rejectUnauthorized: false,
-    },
   },
   { sendmail: true }
 );

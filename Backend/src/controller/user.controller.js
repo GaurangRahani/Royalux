@@ -306,7 +306,20 @@ export const forgotPassword = async (req, res) => {
 // Controller for resetting a password
 export const resetPassword = async (req, res) => {
   try {
-    const { email, newPassword } = req.body;
+    const { email, otp, newPassword } = req.body;
+    if (!email || !otp || !newPassword) {
+      return res
+        .status(400)
+        .json({ success: false, message: errorMessage.NotEnterValidFeilds });
+    }
+
+    const findOtp = await OtpModel.findOne({ email });
+    if (!findOtp || findOtp.otp !== otp) {
+      return res
+        .status(400)
+        .json({ success: false, message: errorMessage.OtpWrong });
+    }
+
     const findUser = await UserModel.findOne({ email });
     if (!findUser) {
       return res
@@ -316,6 +329,7 @@ export const resetPassword = async (req, res) => {
 
     findUser.password = newPassword;
     await findUser.save();
+    await OtpModel.findOneAndDelete({ email });
 
     return res
       .status(200)
@@ -580,6 +594,11 @@ export const deleteUser = async (req, res) => {
     // code can be simplified.
     const { password } = req.body;
     const user = req.user;
+    if (!user) {
+      return res
+        .status(401)
+        .json({ success: false, message: errorMessage.UnauthorizedRequest });
+    }
 
     const matchUserPasssword = await user.isPasswordCorrect(password);
     if (!matchUserPasssword) {
