@@ -2,34 +2,30 @@ import mongoose, { Schema } from "mongoose";
 
 const propertySchema = new Schema(
   {
-    userId: {
+    listedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
-    },
-    type: {
-      type: String,
-      enum: {
-        values: ["Sell", "Rent"],
-        message: "Plz ! Select One..!",
-      },
       required: true,
-      trim: true,
+    },
+    ownerType: {
+      type: String,
+      enum: ["ONLINE", "OFFLINE"],
+      required: true,
+    },
+    transactionType: {
+      type: String,
+      enum: ["SELL", "RENT"],
+      required: true,
     },
     description: {
       type: String,
       trim: true,
     },
-    propertyImage: {
+    propertyImages: {
       type: [String],
       required: true,
-      trim: true,
     },
     address: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    state: {
       type: String,
       required: true,
       trim: true,
@@ -38,122 +34,79 @@ const propertySchema = new Schema(
       type: String,
       required: true,
       trim: true,
+      index: true,
+    },
+    state: {
+      type: String,
+      required: true,
+      trim: true,
     },
     size: {
-      type: String,
+      type: Number,
       required: true,
-      trim: true,
     },
     price: {
-      type: String,
+      type: Number,
       required: true,
-      trim: true,
+      index: true,
     },
     propertyAge: {
-      type: String,
+      type: Number,
       required: true,
-      trim: true,
     },
+
+    // Classification of propertyy
     propertyType: {
       type: String,
-      enum: {
-        values: [
-          "Appartment",
-          "Independent House",
-          "Villa",
-          "Affordable House",
-        ],
-        message: "Plz ! Select One..!",
-      },
+      enum: ["APARTMENT", "VILLA", "INDEPENDENT_HOUSE", "COMMERCIAL"],
       required: true,
-      trim: true,
-    },
-    faching: {
-      type: String,
-      enum: {
-        values: ["North", "East", "South", "West"],
-        message: "Plz ! Select One..!",
-      },
-      required: true,
-      trim: true,
     },
     houseType: {
       type: String,
-      enum: {
-        values: ["1 BHK", "2 BHK", "3 BHK","3+ BHK"],
-        message: "Plz ! Select One..!",
-      },
+      enum: ["1_BHK", "2_BHK", "3_BHK", "3_PLUS_BHK"],
       required: true,
-      trim: true,
     },
-    facility: {
-      type: [String],
+    facing: {
+      type: String,
+      enum: ["NORTH", "EAST", "SOUTH", "WEST"],
       required: true,
-      trim: true,
     },
     furnishing: {
       type: String,
-      enum: {
-        values: ["Unfurnished", "Semi Furnished", "Fully Furnished"],
-        message: "Plz ! Select One..!",
-      },
+      enum: ["UNFURNISHED", "SEMI_FURNISHED", "FULLY_FURNISHED"],
       required: true,
-      trim: true,
     },
+    facilities: {
+      type: [String],
+      default: [],
+    },
+
+    // status of property
     status: {
       type: String,
-      enum: {
-        values: ["approval", "cancel", "pending"],
-        message: "Plz ! Select One..!",
+      enum: [
+        "PENDING_ADMIN_APPROVAL",
+        "ACTIVE",
+        "VISIT_COMPLETED",
+        "SOLD",
+        "RENTED",
+        "CANCELLED",
+        "ARCHIVED",
+      ],
+      default: "PENDING_ADMIN_APPROVAL",
+      index: true,
+    },
+    likedBy: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
       },
-      default: "pending",
-    },
-    mobileNo: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    date: {
-      type: Date,
-      default: Date.now(),
-    },
-    agentId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
-      default: null,
-    },
-    listedBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
-      default: null,
-    },
-    ownerType: {
-      type: String,
-      enum: {
-        values: ["ONLINE", "OFFLINE"],
-        message: "Owner type is not correct",
-      },
-      default: "ONLINE",
-    },
-    isLike: {
-      type: Boolean,
-      default: false
-    },
-    isPayment:{
-      type:Boolean,
-      default:false
-    },
-    paymentUserId:{
-      type:String,
-      default:''
-    }
+    ],
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    versionKey: false,
+  },
 );
 
 const PropertyModel = mongoose.model("property", propertySchema);
