@@ -1,46 +1,42 @@
 import mongoose, { Schema } from "mongoose";
 import validator from "validator";
 
-const feedbackSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-  },
+const otpSchema = new Schema({
   email: {
     type: String,
     required: true,
     lowercase: true,
-    unique: true,
+    trim: true,
     validate(value) {
       if (!validator.isEmail(value)) {
         throw new Error("Validation Error");
       }
     },
-    trim: true,
   },
-  rating: {
-    type: Number,
-    min: 1,
-    max: 5,
-    required: true,
-    trim: true,
-  },
-  message: {
+  otp: {
     type: String,
-    required: true,
     trim: true,
   },
-  profilePic:{
-    type:String,
-    default:null
+  // Temporary storage for signup data until OTP is verified
+  name: {
+    type: String,
+    trim: true,
+  },
+  mobileNo: {
+    type: String,
+    trim: true,
+  },
+  password: {
+    type: String,
+    trim: true,
   },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    default: Date.now,
+    expires: 600, // Automatically delete after 10 minutes
   },
 });
 
-const FeedBackModel = mongoose.model("feedback", feedbackSchema);
+const OtpModel = mongoose.model("otp", otpSchema);
 
-export { FeedBackModel };
+export { OtpModel };

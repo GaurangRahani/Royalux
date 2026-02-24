@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { verifyUser } from "../middleware/auth.middleware.js";
-import { verifyRole } from "../middleware/role.middleware.js"; // Import the new middleware
-import { upload } from "../middleware/multer.middleware.js";
+import { verifyUser } from "../middleware/authMiddleware.js";
+import { verifyRole } from "../middleware/roleMiddleware.js"; // Import the new middleware
+import { upload } from "../middleware/multerMiddleware.js";
 import {
   signUp,
   signIn,
@@ -15,13 +15,15 @@ import {
   googleLoginUser,
   getCurrentUser,
   deleteUser,
-} from "../controller/user.controller.js";
+} from "../controller/userController.js";
 const router = Router();
 
+// Authentication Routes
 router.post("/sign-up", signUp);
+router.post("/verify-otp", verifyOtp); // Finalizes registration and logs user in
 router.post("/sign-in", signIn);
-router.post("/verify-email", verifyEmail);
-router.post("/verify-otp", verifyOtp);
+
+// Password Management Routes
 router.post("/forgot-password", forgotPassword);
 router.post("/reset-password", resetPassword);
 router.post("/change-password", verifyRole, changePassword);
@@ -39,3 +41,4 @@ router.get("/get-user", verifyRole, getCurrentUser); // Use the new middleware
 router.delete("/delete-user", verifyRole, deleteUser);
 
 export const userRouter = router;
+

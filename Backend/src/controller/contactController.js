@@ -1,4 +1,4 @@
-import { contactModel } from "../model/contact.model.js";
+import { contactModel } from "../model/contactModel.js";
 import { Message } from "../config/message.js";
 
 const { ContactMessage, errorMessage } = Message;

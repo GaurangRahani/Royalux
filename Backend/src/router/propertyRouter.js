@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { verifyUser } from "../middleware/auth.middleware.js";
-import { upload } from "../middleware/multer.middleware.js";
+import { verifyUser } from "../middleware/authMiddleware.js";
+import { upload } from "../middleware/multerMiddleware.js";
 import {
   addProperty,
   getAllProperty,
@@ -21,8 +21,8 @@ import {
   addPaymentInProperty,
   getAllApprovalPropertyForApp,
   getOnlyPaymentProperty
-} from "../controller/property.controller.js";
-import { verifyAgent } from "../middleware/agent.middleware.js";
+} from "../controller/propertyController.js";
+import { verifyAgent } from "../middleware/agentMiddleware.js";
 
 const router = Router();
 
@@ -60,3 +60,4 @@ router.put("/set-isproperty",verifyUser,addPaymentInProperty);
 router.get("/get-allpayment-property", verifyUser, getOnlyPaymentProperty);
 
 export const propertyRouter = router;
+

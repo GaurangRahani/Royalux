@@ -1,11 +1,11 @@
 import { verifyToken } from "../utils/genToken.js";
-import { AgentModel } from "../model/agent.model.js";
+import { UserModel } from "../model/userModel.js";
 import { Message } from "../config/message.js";
 
 const { errorMessage } = Message;
 
-// Middleware to verify if the user is an agent
-export const verifyAgent = async (req, res, next) => {
+// Middleware to verify if the user is authenticated
+export const verifyUser = async (req, res, next) => {
   try {
     // Extract the token from the Authorization header
     const { authorization } = req.headers;
@@ -17,28 +17,26 @@ export const verifyAgent = async (req, res, next) => {
         .json({ success: false, message: errorMessage.UnauthorizedRequest });
     }
 
-    // Verify the token and get the decoded payload
-    // Note: It's a better practice to use the secret key from an environment variable directly
-    // within the `verifyToken` function.
+    // Verify the token using the secret key from environment variables
     const decodeToken = verifyToken(token, process.env.JWT_SECRET_KEY);
-    
+
     if (!decodeToken || !decodeToken.id) {
-        return res
-            .status(401)
-            .json({ success: false, message: errorMessage.InvalidUserToken });
-    }
-
-    // Find the agent in the database using the decoded token's ID
-    const agent = await AgentModel.findById(decodeToken.id).select("-password");
-
-    if (!agent) {
       return res
         .status(401)
         .json({ success: false, message: errorMessage.InvalidUserToken });
     }
-    
-    // Attach the agent object to the request for subsequent middleware or controllers
-    req.user = agent;
+
+    // Find the user in the database using the decoded token's ID
+    const user = await UserModel.findById(decodeToken.id).select("-password");
+
+    if (!user) {
+      return res
+        .status(401)
+        .json({ success: false, message: errorMessage.InvalidUserToken });
+    }
+
+    // Attach the user object to the request for subsequent middleware or controllers
+    req.user = user;
 
     // Proceed to the next middleware or controller
     next();

@@ -1,4 +1,4 @@
-import { FeedBackModel } from "../model/feedback.model.js";
+import { FeedBackModel } from "../model/feedbackModel.js";
 import { Message } from "../config/message.js";
 
 const { feedbackMessage, errorMessage } = Message;
@@ -70,4 +70,5 @@ export const getFeedBack = async (req, res) => {
     return res.status(501).json({ success: false, message: error.message });
   }
 };
+
 

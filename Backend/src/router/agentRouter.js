@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { upload } from "../middleware/multer.middleware.js";
-import { verifyRole } from "../middleware/role.middleware.js";
+import { upload } from "../middleware/multerMiddleware.js";
+import { verifyRole } from "../middleware/roleMiddleware.js";
 import {
   applyAsAgent,
   agentMetting,
@@ -38,3 +38,4 @@ router.post(
 router.delete("/delete-profilePic", verifyRole, deleteProfilePic);
 
 export const agentRouter = router;
+

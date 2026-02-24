@@ -7,3 +7,4 @@ export function generateOTP(params) {
   });
   return otp;
 }
+

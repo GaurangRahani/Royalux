@@ -145,3 +145,4 @@ agentSchema.methods.isPasswordCorrect = async function (password) {
 const AgentModel = mongoose.model("agent", agentSchema);
 
 export { AgentModel };
+

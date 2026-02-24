@@ -1,6 +1,6 @@
-import { PropertyModel } from "../model/property.model.js";
-import { UserModel } from "../model/user.model.js";
-import { AgentModel } from "../model/agent.model.js";
+import { PropertyModel } from "../model/propertyModel.js";
+import { UserModel } from "../model/userModel.js";
+import { AgentModel } from "../model/agentModel.js";
 import { fileUploadInCloudinary } from "../utils/clodinary.js";
 import { Message } from "../config/message.js";
 const { propertyMessage, errorMessage } = Message;
@@ -1038,3 +1038,4 @@ export const getOnlyPaymentProperty = async (req, res) => {
     });
   }
 };
+

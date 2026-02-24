@@ -87,3 +87,4 @@ export const Message = {
     SubmitContact: "Your Query submitted successfully",
   }
 };
+

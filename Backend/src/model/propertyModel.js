@@ -6,6 +6,7 @@ const propertySchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
       required: true,
+      index: true
     },
     ownerType: {
       type: String,
@@ -55,7 +56,7 @@ const propertySchema = new Schema(
       required: true,
     },
 
-    // Classification of propertyy
+    // Classification of property
     propertyType: {
       type: String,
       enum: ["APARTMENT", "VILLA", "INDEPENDENT_HOUSE", "COMMERCIAL"],
@@ -64,7 +65,6 @@ const propertySchema = new Schema(
     houseType: {
       type: String,
       enum: ["1_BHK", "2_BHK", "3_BHK", "3_PLUS_BHK"],
-      required: true,
     },
     facing: {
       type: String,
@@ -78,6 +78,7 @@ const propertySchema = new Schema(
     },
     facilities: {
       type: [String],
+      enum: ["LIFT", "PARKING", "GYM", "SWIMMING_POOL", "PLAY_AREA", "GATED_COMMUNITY"],
       default: [],
     },
 
@@ -112,3 +113,4 @@ const propertySchema = new Schema(
 const PropertyModel = mongoose.model("property", propertySchema);
 
 export { PropertyModel };
+

@@ -1,10 +1,10 @@
-import { UserModel } from "../model/user.model.js";
-import { AgentModel } from "../model/agent.model.js";
-import { PropertyModel } from "../model/property.model.js";
+import { UserModel } from "../model/userModel.js";
+import { AgentModel } from "../model/agentModel.js";
+import { PropertyModel } from "../model/propertyModel.js";
 import { generateToken, verifyToken } from "../utils/genToken.js";
 import { sendEmail } from "../utils/nodemailer.js";
 import { generateOTP } from "../utils/genOtp.js";
-import { OtpModel } from "../model/otp.model.js";
+import { OtpModel } from "../model/otpModel.js";
 import { publicUrl } from "../utils/profilepic.js";
 import {
   fileDestroyInCloudinary,
@@ -17,6 +17,7 @@ const client = new OAuth2Client(process.env.CLIENTID);
 const { userMessage, errorMessage, emailMessage } = Message;
 
 // Controller for user sign-up
+// Step 1: Initiator - Parks signup data and sends OTP
 export const signUp = async (req, res) => {
   try {
     const { name, email, mobileNo, password, role } = req.body;
@@ -41,39 +42,29 @@ export const signUp = async (req, res) => {
         .json({ success: false, message: errorMessage.UserAlreadyExits });
     }
 
-    const nameFirstLetter = name.toLowerCase().slice(0, 1);
-    const url = publicUrl(nameFirstLetter);
+    const otp = generateOTP();
 
-    const user = new UserModel({
-      name,
-      email,
-      mobileNo,
-      password,
-      profilePic: url,
-    });
-    await user.save();
+    // "Park" the data in the OtpModel waiting room
+    await OtpModel.findOneAndUpdate(
+      { email },
+      { name, mobileNo, password, otp },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
 
-    const token = generateToken({ id: user._id });
-
-    const emailTemp = `
+    const mailFormat = `
       <table cellpadding="0" cellspacing="0" width="100%" bgcolor="#f0f0f0">
         <tr>
           <td align="center">
             <table width="600" cellpadding="0" cellspacing="0">
               <tr>
                 <td>
-                  <div style="padding: 20px; background-color: white; text-align: center;">
-                    <img src="https://media.istockphoto.com/id/1472307744/photo/clipboard-and-pencil-on-blue-background-notepad-icon-clipboard-task-management-todo-check.webp?b=1&s=170667a&w=0&k=20&c=WfRoNKWq5Dr-23RuNifv1kbIR1LVuZAsCzzSH2I3HsY=" alt="Logo" width="200" height="100" style="display: block; margin: 0 auto;">
-                    <h1>Welcome to Our Service!</h1>
-                    <p>Dear ${user.name},</p>
-                    <p>Thank you for registering with Our app. You're now a part of our community.</p>
-                    <p>Your account details:</p>
-                    <strong>Username:</strong> ${user.name}<br>
-                    <strong>Email:</strong> ${user.email}
-                    <p>We're excited to have you on board, and you can start using our service right away.</p>
-                    <p>If you have any questions or need assistance, please don't hesitate to contact our support team at <b>homehubmarket123@gmail.com</b>.</p>
-                    <p>Best regards,</p>
-                    <p>Home-Hub Market</p>
+                  <div style="padding: 20px; background-color: #ffffff; text-align: center;">
+                    <img src="https://media.istockphoto.com/id/1300422159/photo/woman-hand-enter-a-one-time-password-for-the-validation-process-mobile-otp-secure.webp?b=1&s=170667a&w=0&k=20&c=eADS7XcHTFs4kNItYwelOtHYFVbl0RWpSuXJgjFjai4=" alt="OTP Image" width="200" height="200" style="display: block; margin: 0 auto;">
+                    <h1>Signup OTP Verification</h1>
+                    <p>Hello ${name}!</p>
+                    <p>Your OTP code for signup is: <strong style="font-size: 24px;">${otp}</strong></p>
+                    <p>This OTP will expire in 10 minutes.</p>
+                    <p>If you didn't request this OTP, please ignore this email.</p>
                   </div>
                 </td>
               </tr>
@@ -84,18 +75,16 @@ export const signUp = async (req, res) => {
     `;
 
     const mailOptions = {
-      to: user.email,
-      subject: emailMessage.SignupSubject,
-      html: emailTemp,
+      to: email,
+      subject: emailMessage.VerifyEmailSubject,
+      html: mailFormat,
     };
 
     await sendEmail(mailOptions);
-    const userData = user.getData();
-    return res.status(201).json({
+
+    return res.status(200).json({
       success: true,
-      User: userData,
-      token: token,
-      message: userMessage.SignUp,
+      message: "OTP sent to your email. Please verify to complete signup.",
     });
   } catch (error) {
     return res.status(501).json({ success: false, message: error.message });
@@ -113,38 +102,32 @@ export const signIn = async (req, res) => {
         .json({ success: false, message: errorMessage.NotEnterValidFeilds });
     }
 
-    const findUser = await UserModel.findOne({ email });
-    const findAgent = await AgentModel.findOne({ email });
-    const findAdmin = await UserModel.findOne({ email, role: "ADMIN" });
+    const user = await UserModel.findOne({ email });
 
-    let user;
-    let tokenMessage;
-    let findPassword;
-
-    if (findUser) {
-      user = findUser;
-      tokenMessage = userMessage.SignInUser;
-    } else if (findAgent) {
-      user = findAgent;
-      tokenMessage = userMessage.SignInAgent;
-    } else if (findAdmin) {
-      user = findAdmin;
-      tokenMessage = userMessage.SignInAdmin;
-    } else {
+    if (!user) {
       return res
         .status(404)
         .json({ success: false, message: errorMessage.UserNotExits });
     }
 
-    findPassword = await user.isPasswordCorrect(password);
+    const isMatch = await user.isPasswordCorrect(password);
 
-    if (!findPassword) {
+    if (!isMatch) {
       return res
         .status(401)
         .json({ success: false, message: errorMessage.InvalidCredentials });
     }
 
-    const userData = await user.getData();
+    let tokenMessage;
+    if (user.role === "ADMIN") {
+      tokenMessage = userMessage.SignInAdmin;
+    } else if (user.agentApplicationStatus === "APPROVED") {
+      tokenMessage = userMessage.SignInAgent;
+    } else {
+      tokenMessage = userMessage.SignInUser;
+    }
+
+    const userData = user.getData();
     const userToken = generateToken({ id: user._id });
 
     return res.status(200).json({
@@ -213,29 +196,88 @@ export const verifyEmail = async (req, res) => {
 };
 
 // Controller to verify the received OTP
+// Step 2: Finalizer - Verifies OTP and creates the actual user
 export const verifyOtp = async (req, res) => {
   try {
     const { email, otp } = req.body;
 
-    const findUser = await OtpModel.findOne({ email });
+    const otpData = await OtpModel.findOne({ email });
 
-    if (!findUser) {
+    if (!otpData) {
       return res
         .status(404)
-        .json({ success: false, message: errorMessage.UserNotExits });
+        .json({ success: false, message: "OTP expired or not found." });
     }
 
-    if (findUser.otp !== otp) {
+    if (otpData.otp !== otp) {
       return res
         .status(400)
         .json({ success: false, message: errorMessage.OtpWrong });
     }
 
-    await OtpModel.findOneAndDelete({ email: findUser.email });
+    // Capture the parked data from OtpModel
+    const { name, mobileNo, password } = otpData;
 
-    return res
-      .status(200)
-      .json({ success: true, message: userMessage.VerifyOtp });
+    // Create the actual user in UserModel
+    const nameFirstLetter = name.toLowerCase().slice(0, 1);
+    const url = publicUrl(nameFirstLetter);
+
+    const user = new UserModel({
+      name,
+      email,
+      mobileNo,
+      password,
+      profilePic: url,
+    });
+    await user.save();
+
+    // Cleanup the waiting room
+    await OtpModel.findOneAndDelete({ email });
+
+    // Send the Welcome Email
+    const emailTemp = `
+      <table cellpadding="0" cellspacing="0" width="100%" bgcolor="#f0f0f0">
+        <tr>
+          <td align="center">
+            <table width="600" cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  <div style="padding: 20px; background-color: white; text-align: center;">
+                    <img src="https://media.istockphoto.com/id/1472307744/photo/clipboard-and-pencil-on-blue-background-notepad-icon-clipboard-task-management-todo-check.webp?b=1&s=170667a&w=0&k=20&c=WfRoNKWq5Dr-23RuNifv1kbIR1LVuZAsCzzSH2I3HsY=" alt="Logo" width="200" height="100" style="display: block; margin: 0 auto;">
+                    <h1>Welcome to Our Service!</h1>
+                    <p>Dear ${user.name},</p>
+                    <p>Thank you for registering. You're now a verified part of our community.</p>
+                    <p>Your account details:</p>
+                    <strong>Username:</strong> ${user.name}<br>
+                    <strong>Email:</strong> ${user.email}
+                    <p>We're excited to have you on board!</p>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    `;
+
+    const mailOptions = {
+      to: user.email,
+      subject: emailMessage.SignupSubject,
+      html: emailTemp,
+    };
+
+    await sendEmail(mailOptions);
+
+    // Generate Token and Login the user
+    const token = generateToken({ id: user._id });
+    const userData = user.getData();
+
+    return res.status(201).json({
+      success: true,
+      User: userData,
+      token: token,
+      message: userMessage.SignUp,
+    });
   } catch (error) {
     return res.status(501).json({ success: false, message: error.message });
   }
@@ -265,12 +307,11 @@ export const forgotPassword = async (req, res) => {
                 <td>
                   <div style="padding: 20px; background-color: #ffffff; text-align: center;">
                     <img src="https://media.istockphoto.com/id/1300422159/photo/woman-hand-enter-a-one-time-password-for-the-validation-process-mobile-otp-secure.webp?b=1&s=170667a&w=0&k=20&c=eADS7XcHTFs4kNItYwelOtHYFVbl0RWpSuXJgjFjai4=" alt="OTP Image" width="200" height="200" style="display: block; margin: 0 auto;">
-                    <h1>One-Time Password OTP Verification</h1>
-                    <p>Hello there!</p>
-                    <p>Your OTP code is: <strong style="font-size: 24px;">${otp}</strong></p>
-                    <p>This OTP will expire in 1 minutes.</p>
+                    <h1>Forgot Password OTP Verification</h1>
+                    <p>Hello ${findUser.name}!</p>
+                    <p>Your OTP code to reset your password is: <strong style="font-size: 24px;">${otp}</strong></p>
+                    <p>This OTP will expire in 10 minutes.</p>
                     <p>If you didn't request this OTP, please ignore this email.</p>
-                    <P>Don't share your otp with someone else.</p>
                   </div>
                 </td>
               </tr>
@@ -287,23 +328,25 @@ export const forgotPassword = async (req, res) => {
     };
 
     await sendEmail(mailOptions);
-    await OtpModel.findOneAndDelete({ email: findUser.email });
-    const user = new OtpModel({ email: findUser.email, otp: otp });
-    await user.save();
 
-    setTimeout(async () => {
-      await OtpModel.findOneAndDelete({ email: findUser.email });
-    }, 1000 * 60);
+    // Save/Update the OTP in the separate model (no parked data needed here)
+    await OtpModel.findOneAndUpdate(
+      { email },
+      { otp },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
 
-    return res
-      .status(200)
-      .json({ success: true, message: userMessage.ForgotPassword });
+    return res.status(200).json({
+      success: true,
+      message: userMessage.ForgotPassword,
+    });
   } catch (error) {
     return res.status(501).json({ success: false, message: error.message });
   }
 };
 
 // Controller for resetting a password
+// Step 2: Finalizer - Verifies OTP and updates the password
 export const resetPassword = async (req, res) => {
   try {
     const { email, otp, newPassword } = req.body;
@@ -327,38 +370,50 @@ export const resetPassword = async (req, res) => {
         .json({ success: false, message: errorMessage.UserNotExits });
     }
 
+    // Set new password (the userModel pre-save hook will hash it automatically)
     findUser.password = newPassword;
     await findUser.save();
+
+    // Cleanup the OTP record
     await OtpModel.findOneAndDelete({ email });
 
-    return res
-      .status(200)
-      .json({ sucess: true, message: userMessage.ResetPassword });
+    return res.status(200).json({
+      success: true,
+      message: "Password reset successful. Please login with your new password.",
+    });
   } catch (error) {
     return res.status(501).json({ success: false, message: error.message });
   }
 };
 
-// Controller for changing a user's password
+// Controller for changing a user's password (while logged in)
 export const changePassword = async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
     const user = req.user;
 
-    const matchPasssword = await user.isPasswordCorrect(oldPassword);
-
-    if (!matchPasssword) {
+    if (!oldPassword || !newPassword) {
       return res
         .status(400)
-        .json({ success: false, message: errorMessage.PasswordWrong });
+        .json({ success: false, message: errorMessage.NotEnterValidFeilds });
     }
 
-    user.password = newPassword;
-    await user.save({ validateBeforeSave: false });
+    // Verify if the old password is correct
+    const isMatch = await user.isPasswordCorrect(oldPassword);
+    if (!isMatch) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Incorrect current password." });
+    }
 
-    return res
-      .status(200)
-      .json({ success: true, message: userMessage.ChangePassword });
+    // Update to new password (hashed automatically in userModel pre-save hook)
+    user.password = newPassword;
+    await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Password changed successfully.",
+    });
   } catch (error) {
     return res.status(501).json({ success: false, message: error.message });
   }
@@ -589,7 +644,7 @@ export const totalUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
   try {
     // Note: It's a best practice to handle token verification and user lookup
-    // using an authentication middleware (e.g., `auth.middleware.js`).
+    // using an authentication middleware (e.g., `authMiddleware.js`).
     // Assuming `req.user` is populated by the middleware, the following
     // code can be simplified.
     const { password } = req.body;
@@ -616,3 +671,4 @@ export const deleteUser = async (req, res) => {
     return res.status(400).json({ success: false, message: error.message });
   }
 };
+

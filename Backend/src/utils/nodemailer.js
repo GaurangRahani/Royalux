@@ -32,3 +32,4 @@ export async function sendEmail(mailOptions) {
   const emailResponse = await transporter.sendMail(mailOptions);
   return { result: "Email sent successfully" };
 }
+

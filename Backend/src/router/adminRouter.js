@@ -1,6 +1,6 @@
 import { Router } from "express";
 const router = Router();
-import { totalUserCount, totalUser } from "../controller/user.controller.js";
+import { totalUserCount, totalUser } from "../controller/userController.js";
 import {
   totalPropertyCount,
   totalSellPropertyCount,
@@ -9,17 +9,16 @@ import {
   getOnlyRentPropertyForAdmin,
   getOnlySellPropertyForAdmin,
   getRecentProperty,
-} from "../controller/property.controller.js";
+} from "../controller/propertyController.js";
 import {
   getAllAgent,
   totalAgentCount,
   totalAgent,
-  setApproveAgent,
-  setCancelAgent,
+  updateAgentApplicationStatus,
   getAllAnalyticsCount,
-} from "../controller/agent.controller.js";
-import { verifyUser } from "../middleware/auth.middleware.js";
-import { verifyAgent } from "../middleware/agent.middleware.js";
+} from "../controller/adminController.js";
+import { verifyUser } from "../middleware/authMiddleware.js";
+import { verifyAgent } from "../middleware/agentMiddleware.js";
 
 router.get("/total-user-count", verifyUser, totalUserCount);
 router.get("/getall-user", verifyUser, totalUser);
@@ -43,7 +42,7 @@ router.get(
 router.get("/recent-property", verifyUser, getRecentProperty);
 router.get("/get-all-analytics-count", verifyUser, getAllAnalyticsCount);
 router.get("/getall-agent", verifyUser, getAllAgent);
-router.post("/set-approveagent", verifyUser, setApproveAgent);
-router.post("/set-cancelagent", verifyUser, setCancelAgent);
-       
+router.post("/review-agent", verifyUser, updateAgentApplicationStatus);
+
 export const adminRouter = router;
+

@@ -1,11 +1,11 @@
 
 import { Router } from "express";
-import { userRouter } from "./user.router.js";
-import { propertyRouter } from "./property.router.js";
-import { agentRouter } from "./agent.router.js";
-import { adminRouter } from "./admin.router.js";
-import { feedbackRouter } from "./feedback.router.js";
-import { contactRouter } from "./contact.router.js";
+import { userRouter } from "./userRouter.js";
+import { propertyRouter } from "./propertyRouter.js";
+import { agentRouter } from "./agentRouter.js";
+import { adminRouter } from "./adminRouter.js";
+import { feedbackRouter } from "./feedbackRouter.js";
+import { contactRouter } from "./contactRouter.js";
 
 const router = Router();
 
@@ -17,3 +17,4 @@ router.use("/feedback", feedbackRouter);
 router.use("/contact", contactRouter);
 
 export { router };
+

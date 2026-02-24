@@ -161,6 +161,27 @@ const userSchema = new Schema(
   { versionKey: false },
 );
 
+// Hash password before saving
+import bcrypt from "bcrypt";
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
+});
+
+// Method to check password
+userSchema.methods.isPasswordCorrect = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
+
+// Method to get data without sensitive fields
+userSchema.methods.getData = function () {
+  const userObject = this.toObject();
+  delete userObject.password;
+  return userObject;
+};
+
 const UserModel = mongoose.model("user", userSchema);
 
 export { UserModel };
+

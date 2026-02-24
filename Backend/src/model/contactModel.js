@@ -38,3 +38,4 @@ const contactSchema = new Schema({
 const contactModel = mongoose.model("userquery", contactSchema);
 
 export { contactModel };
+

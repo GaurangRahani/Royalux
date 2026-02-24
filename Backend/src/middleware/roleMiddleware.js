@@ -1,13 +1,13 @@
 import { verifyToken } from "../utils/genToken.js";
-import { UserModel } from "../model/user.model.js";
 import { Message } from "../config/message.js";
+import { UserModel } from "../model/userModel.js";
+import { AgentModel } from "../model/agentModel.js";
 
 const { errorMessage } = Message;
 
-// Middleware to verify if the user is authenticated
-export const verifyUser = async (req, res, next) => {
+// Middleware to verify and set the user based on their role (User or Agent)
+export const verifyRole = async (req, res, next) => {
   try {
-    // Extract the token from the Authorization header
     const { authorization } = req.headers;
     const token = authorization?.split(" ")[1];
 
@@ -26,19 +26,23 @@ export const verifyUser = async (req, res, next) => {
         .json({ success: false, message: errorMessage.InvalidUserToken });
     }
 
-    // Find the user in the database using the decoded token's ID
+    // Attempt to find the user from either the UserModel or AgentModel
     const user = await UserModel.findById(decodeToken.id).select("-password");
+    let account = user;
+    if (!account) {
+      account = await AgentModel.findById(decodeToken.id).select("-password");
+    }
 
-    if (!user) {
+    if (!account) {
       return res
         .status(401)
         .json({ success: false, message: errorMessage.InvalidUserToken });
     }
 
-    // Attach the user object to the request for subsequent middleware or controllers
-    req.user = user;
+    // Attach the found user/agent object to the request
+    req.user = account;
 
-    // Proceed to the next middleware or controller
+    // Proceed to the next middleware or route handler
     next();
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
