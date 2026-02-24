@@ -1,4 +1,3 @@
-import { AgentModel } from "../model/agentModel.js";
 import { PropertyModel } from "../model/propertyModel.js";
 import { UserModel } from "../model/userModel.js";
 import { Message } from "../config/message.js";
@@ -15,7 +14,7 @@ export const getAllAgent = async (req, res) => {
         .json({ success: false, message: errorMessage.UserCantSee });
     }
 
-    //Fetch users who have a pending agent application
+    // Fetch users who have a pending agent application
     const allAgentRequests = await UserModel.find({
       agentApplicationStatus: "PENDING",
     });
@@ -71,12 +70,10 @@ export const totalAgentCount = async (req, res) => {
         .json({ success: false, message: errorMessage.UserCantSeeTotal });
     }
 
-    const agents = await AgentModel.find({ status: "approval" }).count();
-    if (!agents) {
-      return res
-        .status(404)
-        .json({ success: false, message: errorMessage.AgentNotFound });
-    }
+    // Count users who are approved agents
+    const agents = await UserModel.countDocuments({
+      agentApplicationStatus: "APPROVED",
+    });
 
     return res.status(200).json({
       success: true,
@@ -98,8 +95,12 @@ export const totalAgent = async (req, res) => {
         .json({ success: false, message: errorMessage.UserCantSee });
     }
 
-    const agents = await AgentModel.find({ status: "approval" });
-    if (!agents) {
+    // Fetch all users who are approved agents
+    const agents = await UserModel.find({
+      agentApplicationStatus: "APPROVED",
+    });
+
+    if (!agents || agents.length === 0) {
       return res
         .status(404)
         .json({ success: false, message: errorMessage.AgentNotFound });
@@ -239,7 +240,7 @@ export const getAllAnalyticsCount = async (req, res) => {
       PropertyModel.countDocuments({ type: "Rent" }),
       PropertyModel.countDocuments({ type: "Sell" }),
       UserModel.countDocuments({}),
-      AgentModel.countDocuments({}),
+      UserModel.countDocuments({ agentApplicationStatus: "APPROVED" }),
     ]);
 
     const stats = {

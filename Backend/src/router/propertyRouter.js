@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { verifyUser } from "../middleware/authMiddleware.js";
 import { upload } from "../middleware/multerMiddleware.js";
+import { verifyRole } from "../middleware/roleMiddleware.js";
 import {
   addProperty,
   getAllProperty,
@@ -22,42 +22,40 @@ import {
   getAllApprovalPropertyForApp,
   getOnlyPaymentProperty
 } from "../controller/propertyController.js";
-import { verifyAgent } from "../middleware/agentMiddleware.js";
 
 const router = Router();
 
+// Routes for Agents (Verified)
 router.post(
   "/add-property",
-  verifyAgent,
+  verifyRole(["AGENT"]),
   upload.array("propertyImage", 10),
   addProperty
 );
-router.get("/getall-property", verifyUser, getAllProperty);
-router.get("/getuserall-property", verifyUser, getUserAllProperty);
-router.get("/getuserpending-property", verifyUser, getUserPendingProperty);
-router.get("/getuserapproval-property", verifyUser, getUserApprovalProperty);
-router.get("/getusercancel-property", verifyUser, getUserCancleProperty);
-router.post("/set-approveproperty", verifyUser, setApproveProperty);
-router.post("/set-cancelproperty", verifyUser, setCancelProperty);
 
-router.get("/getall-property", getAllPropertyForApp);
+router.get("/getuserall-property", verifyRole(["AGENT"]), getUserAllProperty);
+router.get("/getuserpending-property", verifyRole(["AGENT"]), getUserPendingProperty);
+router.get("/getuserapproval-property", verifyRole(["AGENT"]), getUserApprovalProperty);
+router.get("/getusercancel-property", verifyRole(["AGENT"]), getUserCancleProperty);
+
+// Routes for Admin
+router.get("/getall-property", verifyRole(["ADMIN"]), getAllProperty);
+router.post("/set-approveproperty", verifyRole(["ADMIN"]), setApproveProperty);
+router.post("/set-cancelproperty", verifyRole(["ADMIN"]), setCancelProperty);
+router.get("/get-selected-property/:key", verifyRole(["ADMIN"]), getAllSelectedProperty);
+
+// Routes for All Authenticated Users (User/Agent/Admin)
+router.get("/get-selected-property-user/:key", verifyRole(), getAllSelectedPropertyUser);
+router.put("/set-likeproperty", verifyRole(), addLikeInProperty);
+router.get("/get-likeproperty", verifyRole(), getLikeProperty);
+router.put("/set-isproperty", verifyRole(), addPaymentInProperty); // Check if this should be restricted
+router.get("/get-allpayment-property", verifyRole(), getOnlyPaymentProperty);
+
+// Public Routes
+router.get("/getall-property-app", getAllPropertyForApp);
 router.get("/getall-sellproperty", getOnlySellProperty);
 router.get("/getall-rentproperty", getOnlyRentProperty);
 router.get("/getallapproval-property", getAllApprovalPropertyForApp);
-
-
-router.get("/get-selected-property/:key", verifyUser, getAllSelectedProperty);
-router.get("/get-selected-property-user/:key", verifyUser, getAllSelectedPropertyUser);
-
 router.get("/get-filterproperty", getFilterProperty);
 
-router.put("/set-likeproperty",verifyUser,addLikeInProperty);
-router.get("/get-likeproperty",verifyUser,getLikeProperty)
-
-router.put("/set-isproperty",verifyUser,addPaymentInProperty);
-
-
-router.get("/get-allpayment-property", verifyUser, getOnlyPaymentProperty);
-
 export const propertyRouter = router;
-

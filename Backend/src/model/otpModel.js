@@ -17,7 +17,7 @@ const otpSchema = new Schema({
     type: String,
     trim: true,
   },
-  // Temporary storage for signup data until OTP is verified
+  //temporary storage for signup data until OTP is verified
   name: {
     type: String,
     trim: true,
@@ -33,7 +33,7 @@ const otpSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-    expires: 600, // Automatically delete after 10 minutes
+    expires: 600, //recorad wil automatically delete after 10 minutes of creation
   },
 });
 

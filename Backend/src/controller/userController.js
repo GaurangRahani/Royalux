@@ -1,5 +1,4 @@
 import { UserModel } from "../model/userModel.js";
-import { AgentModel } from "../model/agentModel.js";
 import { PropertyModel } from "../model/propertyModel.js";
 import { generateToken, verifyToken } from "../utils/genToken.js";
 import { sendEmail } from "../utils/nodemailer.js";

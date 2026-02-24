@@ -1,6 +1,5 @@
 import { PropertyModel } from "../model/propertyModel.js";
 import { UserModel } from "../model/userModel.js";
-import { AgentModel } from "../model/agentModel.js";
 import { fileUploadInCloudinary } from "../utils/clodinary.js";
 import { Message } from "../config/message.js";
 const { propertyMessage, errorMessage } = Message;
@@ -144,7 +143,7 @@ export const getAllSelectedProperty = async (req, res) => {
         message: errorMessage.PropertyNotFound,
       });
     }
-    
+
     return res.status(200).json({
       success: true,
       allProperty,
@@ -169,9 +168,9 @@ export const getAllSelectedPropertyUser = async (req, res) => {
     const user = req.user;
     const status = req.params.key;
     let allProperty;
-    
+
     const query = { userId: user._id };
-    
+
     if (status !== "All") {
       query.status = status.toLowerCase(); // Ensure status is lowercase
     }
@@ -184,7 +183,7 @@ export const getAllSelectedPropertyUser = async (req, res) => {
         message: errorMessage.PropertyNotFound,
       });
     }
-    
+
     return res.status(200).json({
       success: true,
       allProperty,
@@ -375,9 +374,9 @@ export const getOnlySellProperty = async (req, res) => {
       status: "approval",
     })
       .populate({
-        path: "agentId",
-        model: "agent",
-        select: "name email mobileNo profilePic city state address status",
+        path: "listedBy",
+        model: "user",
+        select: "name email mobileNo profilePic city state address agentApplicationStatus",
       })
       .exec();
 
@@ -414,9 +413,9 @@ export const getOnlyRentProperty = async (req, res) => {
       status: "approval",
     })
       .populate({
-        path: "agentId",
-        model: "agent",
-        select: "name email mobileNo profilePic city state address status",
+        path: "listedBy",
+        model: "user",
+        select: "name email mobileNo profilePic city state address agentApplicationStatus",
       })
       .exec();
 
@@ -1018,7 +1017,7 @@ export const getOnlyPaymentProperty = async (req, res) => {
       model: "agent",
       select: "name email mobileNo profilePic city state address status",
     })
-    .exec();
+      .exec();
     if (!propertyList || propertyList.length === 0) {
       return res.status(404).json({
         success: false,

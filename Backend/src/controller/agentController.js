@@ -1,4 +1,3 @@
-import { AgentModel } from "../model/agentModel.js";
 import { PropertyModel } from "../model/propertyModel.js";
 import { UserModel } from "../model/userModel.js";
 import { generateToken } from "../utils/genToken.js";

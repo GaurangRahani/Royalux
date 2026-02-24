@@ -12,10 +12,12 @@ import {
 } from "../controller/agentController.js";
 
 const router = Router();
+const agentOnly = verifyRole(["AGENT"]);
+const anyUser = verifyRole(); // for initial application where user isn't an agent yet
 
 router.post(
   "/apply-as-agent",
-  verifyRole,
+  anyUser,
   upload.fields([
     { name: "aadhaarFront", maxCount: 1 },
     { name: "aadhaarBack", maxCount: 1 },
@@ -26,16 +28,16 @@ router.post(
 );
 router.post("/set-meeting", agentMetting);
 router.post("/verify-agent", verifyEmail);
-router.get("/getall-agentproperty", verifyRole, getAgentProperty);
-router.get("/agent-profile", verifyRole, agentProfile);
+router.get("/getall-agentproperty", agentOnly, getAgentProperty);
+router.get("/agent-profile", agentOnly, agentProfile);
 
 router.post(
   "/change-profilePic",
-  verifyRole,
+  agentOnly,
   upload.single("profilePic"),
   changeProfilePic
 );
-router.delete("/delete-profilePic", verifyRole, deleteProfilePic);
+router.delete("/delete-profilePic", agentOnly, deleteProfilePic);
 
 export const agentRouter = router;
 
